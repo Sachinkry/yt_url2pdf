@@ -307,25 +307,24 @@ def main():
     data_manager = DataManager(config)
     state_manager = StateManager(config["pipeline"]["db_path"])
 
-    if len(sys.argv) > 1:
-        folder_path = sys.argv[1]
-        process_mixed_folder(folder_path, config, state_manager, data_manager)
-        state_manager.close()
-        return
+    while True:
+        print("What do you want to do?")
+        print("1. Convert YouTube URL to PDF")
+        print("2. Convert a folder of files (.txt/.md/.mp3/.mp4) to PDFs")
+        print("3. Exit")
+        choice = input("Enter choice (1-3): ").strip()
 
-    print("What do you want to do?")
-    print("1. Convert YouTube URL to PDF")
-    print("2. Convert a folder of files (.txt/.md/.mp3/.mp4) to PDFs")
-    choice = input("Enter choice (1-2): ").strip()
-
-    if choice == "1":
-        url = input("Enter YouTube URL: ").strip()
-        process_youtube_url(url, config, state_manager, data_manager)
-    elif choice == "2":
-        folder_path = input("Enter folder path: ").strip()
-        process_mixed_folder(folder_path, config, state_manager, data_manager)
-    else:
-        logger.error("Invalid choice. Please enter 1 or 2.")
+        if choice == "1":
+            url = input("Enter YouTube URL: ").strip()
+            process_youtube_url(url, config, state_manager, data_manager)
+        elif choice == "2":
+            folder_path = input("Enter folder path: ").strip()
+            process_mixed_folder(folder_path, config, state_manager, data_manager)
+        elif choice == "3":
+            print("Exiting. Goodbye!")
+            break
+        else:
+            logger.error("Invalid choice. Please enter 1, 2, or 3.")
 
     state_manager.close()
 
