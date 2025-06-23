@@ -1,0 +1,19 @@
+pipeline:
+  input_type: youtube_url # youtube_url | local_video | transcript_folder
+  input_path: "data/inputs"
+  output_dir: "data"
+  temp_dir: "data/temp"
+  video_dir: "data/videos"
+  pdf_dir: "data/pdf" # Canonical output for all PDFs
+  db_path: "data/outputs/tasks.db"
+  force_reprocess: false
+  continue_on_error: true
+  parallel_jobs: 1
+transcription:
+  service: assemblyai
+  model: google/gemini-2.5-pro
+notes:
+  image_count: 4
+  model: anthropic/claude-opus-4
+latex:
+  max_retries: 3
