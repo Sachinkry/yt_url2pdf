@@ -35,9 +35,17 @@ class DataManager:
         logger.debug(f"Saved image to {path}")
         return str(path)
 
-    def save_pdf(self, id: int, input_type: str, content: bytes) -> str:
-        """Save PDF to data/pdfs/<id>_<input_type>_notes.pdf."""
-        path = self.pdf_dir / f"{id:03d}_{input_type}_notes.pdf"
+    # def save_pdf(self, id: int, input_type: str, content: bytes) -> str:
+    #     """Save PDF to data/pdfs/<id>_<input_type>_notes.pdf."""
+    #     path = self.pdf_dir / f"{id:03d}_{input_type}_notes.pdf"
+    #     path.parent.mkdir(parents=True, exist_ok=True)
+    #     with open(path, "wb") as f:
+    #         f.write(content)
+    #     logger.info(f"Saved PDF to {path}")
+    #     return str(path)
+    def save_pdf(self, filename: str, content: bytes) -> str:
+        """Save PDF to data/pdfs/<filename>.pdf."""
+        path = self.pdf_dir / f"{filename}.pdf"
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
             f.write(content)

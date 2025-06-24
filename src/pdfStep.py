@@ -119,7 +119,9 @@ class PdfStep(ProcessingStep):
         pdf_path = output_dir / f"{context.metadata['id']:03d}_notes.pdf"
         pdf_content = self._compile_latex(tex_path, output_dir, pdf_path)
         # Save final PDF only in canonical pdf_dir
-        saved_pdf_path = data_manager.save_pdf(context.metadata["id"], config["pipeline"]["input_type"], pdf_content)
+        # saved_pdf_path = data_manager.save_pdf(context.metadata["id"], config["pipeline"]["input_type"], pdf_content)
+        input_stem = Path(context.input_data).stem
+        saved_pdf_path = data_manager.save_pdf(input_stem, pdf_content)
         state_manager.save_success(
             input_data=context.input_data,
             input_type=config["pipeline"]["input_type"],

@@ -1,0 +1,16 @@
+data/inputs/lec1.md (id 002): PdfStep failed: Command '['latexmk', '-pdf', '-pdflatex=pdflatex', '-interaction=nonstopmode', '-outdir=/Users/sachinkumaryadav/code-sac/video2pdf-ai/data/temp', '002_latex.tex']' returned non-zero exit status 12.
+data/inputs/lec2.txt (id 004): PdfStep failed: Command '['latexmk', '-pdf', '-pdflatex=pdflatex', '-interaction=nonstopmode', '-outdir=/Users/sachinkumaryadav/code-sac/video2pdf-ai/data/temp', '004_latex.tex']' returned non-zero exit status 12.
+data/inputs/lec1.md (id 005): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 005): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 005): PdfStep failed: No LaTeX content available for PdfStep
+data/inputs/lec1.md (id 006): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 006): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 006): PdfStep failed: No LaTeX content available for PdfStep
+data/inputs/lec1.md (id 007): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 007): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 007): PdfStep failed: No LaTeX content available for PdfStep
+data/inputs/lec1.md (id 009): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 009): LatexStep failed: Failed to generate valid LaTeX after 2 attempts
+data/inputs/lec1.md (id 009): PdfStep failed: No LaTeX content available for PdfStep
+data/inputs/lec2.txt (id 010): PdfStep failed: DataManager.save_pdf() missing 1 required positional argument: 'content'
+data/inputs/lec2.txt (id 011): PdfStep failed: DataManager.save_pdf() missing 1 required positional argument: 'content'

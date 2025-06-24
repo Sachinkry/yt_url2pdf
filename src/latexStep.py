@@ -102,7 +102,7 @@ class LatexStep(ProcessingStep):
         """Sanitize string for use in LaTeX labels (letters, numbers, underscores, hyphens only)."""
         return re.sub(r'[^a-zA-Z0-9_-]', '', s.replace(' ', '_'))
 
-    def _convert_md_to_latex(self, md_content: str, image_dir: Path) -> str:
+    def _convert_md_to_latex(self, md_content: str, image_dir: Path, index: int) -> str:
         """Convert Markdown to LaTeX using OpenRouter API, using absolute image paths."""
         prompt = rf"""
 You are a LaTeX expert tasked with converting a Markdown file into a complete LaTeX document, preserving 100% of the original content, including all explanatory text, paragraphs, labels, detailed information, whitespace, and special characters (e.g., %, $, #, _, &, ^, {{, }}). Do not summarize, skip, simplify, or alter any content—maintain exact fidelity.
@@ -224,6 +224,15 @@ Convert the following Markdown content to LaTeX:
                 logger.info(f"OpenRouter API call took {api_time:.2f} seconds for attempt {attempt+1}")
                 response.raise_for_status()
                 raw_content = response.json()["choices"][0]["message"]["content"]
+
+                # Log the raw LLM response to a file for debugging
+                log_dir = Path("data/temp")
+                log_dir.mkdir(parents=True, exist_ok=True)
+                log_path = log_dir / f"latex_raw_response_{index}.log"
+                with open(log_path, "a", encoding="utf-8") as logf:
+                    logf.write("\n" + "="*40 + "\nRAW LLM RESPONSE\n" + "="*40 + "\n")
+                    logf.write(raw_content)
+                    logf.write("\n" + "="*40 + "\n")
                 
                 extract_start = time.time()
                 latex_content = self._extract_latex(raw_content)
@@ -345,7 +354,7 @@ Convert the following Markdown content to LaTeX:
                 raise ValueError(f"Notes with images are empty for {self.name}")
             # Convert Markdown to LaTeX
             image_dir = data_manager.temp_dir / f"{index:03d}_images"
-            latex_content = self._convert_md_to_latex(notes_img_md, image_dir)
+            latex_content = self._convert_md_to_latex(notes_img_md, image_dir, index)
             # Remove figure blocks for missing images, count present/missing
             latex_content = self._remove_missing_figures(latex_content, image_dir, context)
             # Save LaTeX to context
