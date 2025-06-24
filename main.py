@@ -279,8 +279,11 @@ def process_mixed_folder(folder_path: str, config: dict, state_manager: StateMan
                     context.set_result("TranscribeStep", input_data)
                     steps = [NotesStep(), ImageStep(), LatexStep(), PdfStep()]
                     config["pipeline"]["input_type"] = "text_file"
-                elif ext in {".mp3", ".mp4"}:
+                elif ext == ".mp3":
                     steps = [TranscribeStep(), NotesStep(), ImageStep(), LatexStep(), PdfStep()]
+                    config["pipeline"]["input_type"] = "video_file"
+                elif ext == ".mp4":
+                    steps = [DownloadStep(), TranscribeStep(), NotesStep(), ImageStep(), LatexStep(), PdfStep()]
                     config["pipeline"]["input_type"] = "video_file"
                 else:
                     continue
