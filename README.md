@@ -3,6 +3,7 @@
 This project converts YouTube lecture videos into professionally formatted PDF notes. It transcribes the video, generates structured Markdown notes, embeds relevant images, converts notes to LaTeX, and compiles them into a PDF. This guide is for **Windows** users using **Conda** to manage the Python environment. Follow every step precisely to avoid errors. If you’re new to Conda or programming, this guide is designed to get you up and running without excuses.
 
 ---
+<img width="1278" height="672" alt="image" src="https://github.com/user-attachments/assets/58ffe1b9-42fd-4582-bbd9-af04cb2f02c7" />
 
 ## Prerequisites
 
